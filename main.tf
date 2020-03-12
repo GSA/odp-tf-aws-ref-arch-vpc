@@ -5,11 +5,11 @@ resource "aws_vpc" "main" {
   instance_tenancy = "default"
 
   tags = {
-    Name = "${var.vpc_name}"
-    Terraform = "true"
+    Name        = "${var.vpc_name}"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
 
@@ -19,11 +19,11 @@ resource "aws_internet_gateway" "main" {
   vpc_id = "${aws_vpc.main.id}"
 
   tags = {
-    Name = "${var.vpc_name}"
-    Terraform = "true"
+    Name        = "${var.vpc_name}"
+    Terraform   = "true"
     Environment = "${var.appenv}"
-    ProjectName = "${var.project_name}"    
-    FismaID = "${var.fisma_id}"    
+    ProjectName = "${var.project_name}"
+    FismaID     = "${var.fisma_id}"
   }
 }
 
@@ -37,15 +37,15 @@ resource "aws_route_table" "nat_gw_a" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.nat_gw_a.id 
+    gateway_id = aws_nat_gateway.nat_gw_a.id
   }
 
   tags = {
-    Name = "${var.project_name}-nat-gw-a"
-    Terraform = "true"
+    Name        = "${var.project_name}-nat-gw-a"
+    Terraform   = "true"
     Environment = "${var.appenv}"
-    ProjectName = "${var.project_name}"    
-    FismaID = "${var.fisma_id}"     
+    ProjectName = "${var.project_name}"
+    FismaID     = "${var.fisma_id}"
   }
 }
 
@@ -54,15 +54,15 @@ resource "aws_route_table" "nat_gw_b" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.nat_gw_b.id 
+    gateway_id = aws_nat_gateway.nat_gw_b.id
   }
 
   tags = {
-    Name = "${var.project_name}-nat-gw-b"
-    Terraform = "true"
+    Name        = "${var.project_name}-nat-gw-b"
+    Terraform   = "true"
     Environment = "${var.appenv}"
-    ProjectName = "${var.project_name}"    
-    FismaID = "${var.fisma_id}"     
+    ProjectName = "${var.project_name}"
+    FismaID     = "${var.fisma_id}"
   }
 }
 
@@ -71,15 +71,15 @@ resource "aws_route_table" "internet_gw" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main.id 
+    gateway_id = aws_internet_gateway.main.id
   }
 
   tags = {
-    Name = "${var.project_name}-internet-gw"
-    Terraform = "true"
+    Name        = "${var.project_name}-internet-gw"
+    Terraform   = "true"
     Environment = "${var.appenv}"
-    ProjectName = "${var.project_name}"    
-    FismaID = "${var.fisma_id}"     
+    ProjectName = "${var.project_name}"
+    FismaID     = "${var.fisma_id}"
   }
 }
 
@@ -127,54 +127,54 @@ resource "aws_route_table_association" "public_1_b" {
 ## Private Subnets
 
 resource "aws_subnet" "private_1_a" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "${var.private_1_a_cidr}"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "${var.private_1_a_cidr}"
   availability_zone = "${var.aws_region}a"
   tags = {
-    Name = "${var.project_name}-private-1-a"
-    Terraform = "true"
+    Name        = "${var.project_name}-private-1-a"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
 
 resource "aws_subnet" "private_2_a" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "${var.private_2_a_cidr}"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "${var.private_2_a_cidr}"
   availability_zone = "${var.aws_region}a"
   tags = {
-    Name = "${var.project_name}-private-2-a"
-    Terraform = "true"
+    Name        = "${var.project_name}-private-2-a"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
 
 resource "aws_subnet" "private_1_b" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "${var.private_1_b_cidr}"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "${var.private_1_b_cidr}"
   availability_zone = "${var.aws_region}b"
   tags = {
-    Name = "${var.project_name}-private-1-b"
-    Terraform = "true"
+    Name        = "${var.project_name}-private-1-b"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
 
 resource "aws_subnet" "private_2_b" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "${var.private_2_b_cidr}"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "${var.private_2_b_cidr}"
   availability_zone = "${var.aws_region}b"
   tags = {
-    Name = "${var.project_name}-private-2-b"
-    Terraform = "true"
+    Name        = "${var.project_name}-private-2-b"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
 
@@ -183,53 +183,53 @@ resource "aws_subnet" "private_2_b" {
 ## Public Subnets
 
 resource "aws_subnet" "public_1_a" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "${var.public_1_a_cidr}"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "${var.public_1_a_cidr}"
   availability_zone = "${var.aws_region}a"
   tags = {
-    Name = "${var.project_name}-public-1-a"
-    Terraform = "true"
+    Name        = "${var.project_name}-public-1-a"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
 
 resource "aws_subnet" "public_1_b" {
-  vpc_id     = aws_vpc.main.id
-  cidr_block = "${var.public_1_b_cidr}"
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "${var.public_1_b_cidr}"
   availability_zone = "${var.aws_region}b"
   tags = {
-    Name = "${var.project_name}-public-1-b"
-    Terraform = "true"
+    Name        = "${var.project_name}-public-1-b"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
 
 # Configure NAT Gateways
 
 resource "aws_eip" "nat_gw_a" {
-  vpc      = true
+  vpc = true
   tags = {
-    Name = "${var.project_name}-nat-gw-a"
-    Terraform = "true"
+    Name        = "${var.project_name}-nat-gw-a"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"
-  }  
+    FismaID     = "${var.fisma_id}"
+  }
 }
 
 resource "aws_eip" "nat_gw_b" {
-  vpc      = true
+  vpc = true
   tags = {
-    Name = "${var.project_name}-nat-gw-b"
-    Terraform = "true"
+    Name        = "${var.project_name}-nat-gw-b"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"
-  }  
+    FismaID     = "${var.fisma_id}"
+  }
 }
 
 resource "aws_nat_gateway" "nat_gw_a" {
@@ -238,11 +238,11 @@ resource "aws_nat_gateway" "nat_gw_a" {
   #Assign the subnet ID based on the subnet assigned to the nat gateway.
   subnet_id = aws_subnet.public_1_a.id
   tags = {
-    Name = "${var.project_name}-nat-gw-a"
-    Terraform = "true"
+    Name        = "${var.project_name}-nat-gw-a"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
 
@@ -254,10 +254,10 @@ resource "aws_nat_gateway" "nat_gw_b" {
   subnet_id = aws_subnet.public_1_b.id
 
   tags = {
-    Name = "${var.project_name}-nat-gw-b"
-    Terraform = "true"
+    Name        = "${var.project_name}-nat-gw-b"
+    Terraform   = "true"
     Environment = "${var.appenv}"
     ProjectName = "${var.project_name}"
-    FismaID = "${var.fisma_id}"    
+    FismaID     = "${var.fisma_id}"
   }
 }
